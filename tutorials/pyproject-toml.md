@@ -158,30 +158,66 @@ help users find your package on PyPI and also better describe the scope of your 
 The documentation for the hatchling back-end is [here](https://hatch.pypa.io/latest/config/metadata/)
 :::
 
-## Add metadata to your pyproject.toml `[project]` table
+We'll walk through completing your `pyproject.toml` file, extending the `project` table and adding a `project.urls` table:
 
-So far you have a project name and a version in the `[project]` table.
+- `description`: what does your package do in one sentence?
+- `authors` and `maintainers`: who has contributed to your package?
+- `classifiers`: what categories does your package belong in?
+- `dependencies` and `requires-python`: what does your package need to run?
+- `readme` and `license`: what files within your repo also have metadata?
+- `project.urls`: where can your package be found?
 
-```toml
-[project]
-name = "pyospackage"
-version = "0.1.0"
-
-```
+### `description`, `authors`, `maintainers`
 
 Let's add the following to your table:
 
 - A **description** of your package. This should be a single line and should briefly describe the goal of your package using non technical terms if as all possible!
-- package **authors**
-- package **maintainers**
+- package **authors**, these are the *original* authors of the package.
+- package **maintainers**, the people who *currently* maintain the package.
 
-When you add authors and maintainers you need to use a format that will look like a Python list with a dictionary within it:
+:::{dropdown} Learn More: What's the difference between author and maintainer?
+:color: secondary
 
-`authors = [{ name = "Firstname lastname", email = "email@pyopensci.org" }]`
+When adding maintainers and authors, you may want to think about the difference between the two.
 
-If you have two authors you can add them like this:
+Authors generally include people who:
+* originally created / designed developed the package and
+* people who add new functionality to the package.
 
-`authors = [{ name = "Firstname lastname", email = "email@pyopensci.org" }, { name = "Firstname lastname", email = "email@pyopensci.org" }]`
+Whereas maintainers are the people that are currently, actively working on the project. It is often the case that there is overlap in authors and maintainers. As such these lists may be similar or the same.
+
+A good example of when the lists might diverge is sometimes you have a package where an initial author developed it and then stepped down as a maintainer to move on to other things. This person may continue to be considered an author but no longer actively maintains the package.
+
+It is important to note that there are many ways to define author vs maintainer and we don't prescribe a single approach in this tutorial.
+
+However, we encourage you to consider carefully, for PyPI publication, who
+you want to have listed as authors and maintainers on your PyPI landing page.
+:::
+
+The `description` is just a string like the other values you've set:
+
+```toml
+# you can use """ for multiline strings like in python!
+
+description = """
+Tools that update the pyOpenSci contributor and review metadata 
+that is posted on our website
+"""
+```
+
+When you add `authors` and `maintainers` you need to use a format that will look like a Python list with a dictionary within it:
+
+```toml
+authors = [
+  { name = "Firstname Lastname", email = "email@pyopensci.org"},
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" }
+]
+
+maintainers = [
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" },
+  { name = "New Friend", email = "newbie@pyopensci.org" }
+]
+```
 
 :::{admonition} Author names & emails
 :class: note
@@ -208,32 +244,22 @@ Your `pyproject.toml` file now should look like the example below. It is OK if y
 [project]
 name = "pyospackage"
 version = "0.1.0"
-description = "Tools that update the pyOpenSci contributor and review metadata that is posted on our website"
-authors = [{ name = "Firstname lastname", email = "email@pyopensci.org" }]
-maintainers = [{ name = "Firstname lastname", email = "email@pyopensci.org" }, { name = "Firstname lastname", email = "email@pyopensci.org" }]
+description = """
+Tools that update the pyOpenSci contributor and review metadata 
+that is posted on our website
+"""
+authors = [
+  { name = "Firstname Lastname", email = "email@pyopensci.org"},
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" }
+]
+maintainers = [
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" },
+  { name = "New Friend", email = "newbie@pyopensci.org" }
+]
 ```
 
-:::{dropdown} Learn More: What's the difference between author and maintainer in open source?
-:color: secondary
 
-When adding maintainers and authors, you may want to think about the difference between the two.
-
-Authors generally include people who:
-* originally created / designed developed the package and
-* people who add new functionality to the package.
-
-Whereas maintainers are the people that are currently, actively working on the project. It is often the case that there is overlap in authors and maintainers. As such these lists may be similar or the same.
-
-A good example of when the lists might diverge is sometimes you have a package where an initial author developed it and then stepped down as a maintainer to move on to other things. This person may continue to be considered an author but no longer actively maintains the package.
-
-It is important to note that there are many ways to define author vs maintainer and we don't prescribe a single approach in this tutorial.
-
-However, we encourage you to consider carefully, for PyPI publication, who
-you want to have listed as authors and maintainers on your PyPI landing page.
-:::
-
-
-### Add classifiers to your metadata
+### `classifiers`
 
 Next you will add classifiers to your `pyproject.toml` file. The value for each classifier that you add to your `pyproject.toml` file must come from the list of [PyPI accepted classifier values found here](https://PyPI.org/classifiers/). Any deviations in spelling and format will cause issues when you publish to PyPI.
 
@@ -256,7 +282,25 @@ The classifier key should look something like the example below. A few notes:
 - Your classifier values might be different depending upon the license you have selected for your package, your intended audience, development status of your package and the Python versions that you support
 - You can add as many classifiers as you wish as long as you use the [designated PyPI classifier values](https://PyPI.org/classifiers/).
 
+Now your `pyproject.toml` should look like this:
+
+{emphasize-lines="16-24"}
 ```toml
+[project]
+name = "pyospackage"
+version = "0.1.0"
+description = """
+Tools that update the pyOpenSci contributor and review metadata 
+that is posted on our website
+"""
+authors = [
+  { name = "Firstname Lastname", email = "email@pyopensci.org"},
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" }
+]
+maintainers = [
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" },
+  { name = "New Friend", email = "newbie@pyopensci.org" }
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -264,7 +308,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",]
+    "Programming Language :: Python :: 3.11",
+]
 ```
 
 Note that while classifiers are not required in your `pyproject.toml` file, they will help users find your package. As such we strongly recommend that you add them.
@@ -284,58 +329,57 @@ dependencies are added in an array (similar to a Python list) structure.
 dependencies = ["numpy", "requests", "pandas", "pydantic"]
 ```
 
-:::{admonition} Pin dependencies with caution
-Pinning dependencies refers to specifying a specific version of a dependency like this `numpy == 1.0`. In some specific cases, you may chose to pin a package version for a specific package dependency.
-
-Declaring lower bounds involves ensuring that a user has at least a specific version (or greater) of a package installed. This is important as often your package is not backwards compatible with an older version of a tool - for example a version of Pandas that was released 5 years ago.
-
-You can declare a lower bound using syntax like this:
-
-`ruamel-yaml>=0.17.21`
+Dependencies can, and usually should come with a **version specifier.** A plain dependency says that your package can work with any version of that dependent package. Code changes over time, bugs are fixed, APIs change, and so it's good to be clear about which version of the dependency you wrote your code to be compatible with.
 
 [Learn more about various ways to specify ranges of package versions here.](https://packaging.python.org/en/latest/specifications/version-specifiers/#id5)
 
-Note that unless you are building an application, you want to be cautious about pinning dependencies to precise versions. For example:
+The most common version specifier is a **lower bound,** allowing any version higher than the specified version. Ideally you should set this to the lowest version that is still compatible with your package, but in practice for new packages this is often set at the version that was current at the time the package was written.
 
-`numpy == 1.0.2`
-
-This is because
-users will be installing your package into various environments.
-A dependency pinned to a single specific version can make
-resolving a Python environment more challenging. As such only
-pin dependencies to a specific version if you absolutely need to
-do so.
-
-One build tool that you should be aware of that pins dependencies to an upper bound by default is Poetry. [Read more about how to safely add dependencies with Poetry, here.](../package-structure-code/python-package-build-tools.html#challenges-with-poetry)
-:::
-
-### Requires-python
-
-Finally, add the `requires-python` field to your `pyproject.toml` `[project]` table. The `requires-python` field, helps pip understand the lowest version of Python that you package supports when it's installed. It is thus a single value.
-
-`requires-python = ">=3.10"`
-
-### Your current pyproject.toml file
-
-Once you have dependencies declared in the `pyproject.toml` file, your build
-tool will know to install them when your package is installed using pip.
-
-The project table of your `pyproject.toml` file should now look something like the example below.
+Lower bounds look like this:
 
 ```toml
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+dependencies = [ "numpy>=1.0" ]
+```
 
+You can combine specifiers with commas, and use different kinds of specifiers for each package in your `dependencies` section:
+
+```toml
+dependencies = [
+  "numpy>=1.0", 
+  "requests==10.1", 
+  "pandas", 
+  "pydantic>=1.7,<2"
+]
+```
+
+:::{admonition} Pin dependencies with caution
+Pinning dependencies refers to specifying a specific version of a dependency like this `numpy == 1.0`. In some specific cases, you may chose to pin a package version for a specific package dependency.
+
+Note that unless you are building an application, you want to be cautious about pinning dependencies. This is because
+users will be installing your package into various environments. A pinned dependency can make resolving an environment more challenging to resolve. As such only pin dependencies to a specific version or bound if you absolutely need to do so.
+
+One build tool that you should be aware of that pins dependencies by default is Poetry. [Read more about how to safely add dependencies with Poetry, here.](../package-structure-code/python-package-build-tools.html#challenges-with-poetry)
+:::
+
+Your `pyproject.toml` will now look like this!
+
+{emphasize-lines="25-30"}
+```toml
 [project]
 name = "pyospackage"
 version = "0.1.0"
-description = "Tools that update the pyOpenSci contributor and review metadata that is posted on our website"
-authors = [{ name = "Firstname lastname", email = "email@pyopensci.org" }]
-maintainers = [{ name = "Firstname lastname", email = "email@pyopensci.org" }, { name = "Firstname lastname", email = "email@pyopensci.org" }]
-
-requires-python = ">=3.10"
-
+description = """
+Tools that update the pyOpenSci contributor and review metadata 
+that is posted on our website
+"""
+authors = [
+  { name = "Firstname Lastname", email = "email@pyopensci.org"},
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" }
+]
+maintainers = [
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" },
+  { name = "New Friend", email = "newbie@pyopensci.org" }
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -344,21 +388,71 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-
-dependencies = ["ruamel-yaml>=0.17.21", "requests", "python-dotenv", "pydantic"]
-
+]
+dependencies = [
+  "numpy>=1.0", 
+  "requests==10.1", 
+  "pandas", 
+  "pydantic>=1.7,<2"
+]
 ```
+
+### Requires-python
+
+Finally, add the `requires-python` field to your `pyproject.toml` `[project]` table. The `requires-python` field, helps pip understand the lowest version of Python that you package supports when it's installed. It is thus a single value.
+
+`requires-python = ">=3.10"`
+
+It supports the same version syntax as dependencies, and the same caveats about being too restrictive with versions apply.
 
 ### Add your README and license
 
 In the previous lessons, you added both a [README.md](add-readme) file and a [LICENSE](add-license-coc) to your package repository.
-Once you have those files, you can add them to your pyproject.toml file as
-links following the example below.
-
+Once you have those files, you can add them as paths relative to the `pyproject.toml` file following the example below.
 
 ```toml
 readme = "README.md"
-license = {file = 'LICENSE'}
+license = {file = "LICENSE"}
+```
+
+This will tell your build tool to include these files in built distributions, and will let tools that scan package metadata understand how to display your readme and what license you are using.
+
+Your `pyproject.toml` file will now look like this:
+
+{emphasize-lines="31-32"}
+```toml
+[project]
+name = "pyospackage"
+version = "0.1.0"
+description = """
+Tools that update the pyOpenSci contributor and review metadata 
+that is posted on our website
+"""
+authors = [
+  { name = "Firstname Lastname", email = "email@pyopensci.org"},
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" }
+]
+maintainers = [
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" },
+  { name = "New Friend", email = "newbie@pyopensci.org" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+  "numpy>=1.0", 
+  "requests==10.1", 
+  "pandas", 
+  "pydantic>=1.7,<2"
+]
+readme = "README.md"
+license = {file = "LICENSE"}
 ```
 
 ## Add the `[project.urls]` table
@@ -372,7 +466,7 @@ pyproject.toml file.
 - **Bug reports:** a link to your issues / discussions or wherever you want users to report bugs.
 - **Source:** the GitHub / GitLab link for your project.
 
-```
+```toml
 [project.urls] # Optional
 "Homepage" = "https://www.pyopensci.org"
 "Bug Reports" = "https://github.com/pyopensci/pyosmeta/issues"
@@ -394,13 +488,19 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyosmeta"
+name = "pyospackage"
 version = "0.1.0"
-description = "Tools that update the pyOpenSci contributor and review metadata that is posted on our website"
-authors = [{ name = "Firstname lastname", email = "email@pyopensci.org" }]
-
+description = """
+Tools that update the pyOpenSci contributor and review metadata 
+that is posted on our website
+"""
+authors = [
+  { name = "Firstname Lastname", email = "email@pyopensci.org"},
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" }
+]
 maintainers = [
-    { name = "firstname lastname", email = "admin@pyopensci.org" },
+  { name = "Secondperson Fullname", email = "email2@pyopensci.org" },
+  { name = "New Friend", email = "newbie@pyopensci.org" }
 ]
 
 classifiers = [
@@ -412,22 +512,78 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
-
-dependencies = ["ruamel-yaml>=0.17.21", "requests", "python-dotenv", "pydantic"]
-
-requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.0", 
+  "requests==10.1", 
+  "pandas", 
+  "pydantic>=1.7,<2"
+]
 readme = "README.md"
-license = { text = "MIT" }
+license = {file = "LICENSE"}
 
 [project.urls] # Optional
 "Homepage" = "https://www.pyopensci.org"
 "Bug Reports" = "https://github.com/pyopensci/pyosmeta/issues"
-#"Funding" = ""
+"Funding" = "http://example.com/funding-source/"
 "Source" = "https://github.com/pyopensci/pyosmeta/issues"
 ```
 
+## Publish a new version of your package to PyPI
 
-## Appendix - A fully commented pyproject.toml file
+You are now ready to publish a new version of your Python package to (test) PyPI. When you do this you will see that the landing page for your package now contains a lot more information.
+
+Try to republish now.
+
+First, update the version of your package in your pyproject toml file. Below version is updated from
+`0.1.0` to `0.1.1`.
+
+```TOML
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyospackage"
+version = "0.1.1"
+```
+
+Now use hatch to publish the new version of your package to test.PyPI.org.
+
+```bash
+> hatch publish -r test
+
+```
+
+### Next (optional) step - publishing to conda-forge
+
+You now have all of the skills that you need to publish
+your package to PyPI.
+
+If you also want to publish your package on conda-forge (which is a channel within the conda ecosystem), you will learn how to do that in the next lesson.
+
+
+:::{todo}
+Really good resources frm jeremiah https://daniel.feldroy.com/posts/2023-08-pypi-project-urls-cheatsheet useful (and the linked links-demo even more so)
+:::
+
+## <i class="fa-solid fa-hands-bubbles"></i> Wrap up
+
+
+At this point you've created:
+
+* A [README.md](add-readme) file for your package
+* A [CODE_OF_CONDUCT.md](add-coc) file to support your user community
+* And a [LICENSE](add-license-coc) file which provides legal boundaries around how people can and can't use your software
+
+You also learned [how to publish your package to (test)PyPI](publish-pypi).
+
+## Appendix - Example `pyproject.toml` files
+
+Below are some examples of `pyproject.toml` files from various packages in the scientific and pyOpenSci ecosystem.
+* [PyPA's fully documented example pyproject.toml file](https://github.com/pypa/sampleproject/blob/main/pyproject.toml)
+* [taxpasta has a nicely organized pyproject.toml file and is a pyOpenSci approved package](https://github.com/taxprofiler/taxpasta/blob/f9f6eea2ae7dd08bb60a53dd49ad77e4cf143573/pyproject.toml)
+
+### A fully commented pyproject.toml file
 
 Below is a fully commented pyproject.toml file if you want to use it for reference.
 
@@ -483,7 +639,7 @@ dependencies = ["xarray", "requests"]
 # This is the metadata that pip reads to understand what versions your package supports
 requires-python = ">=3.10"
 readme = "README.md"
-license = { FILE = LICENSE }
+license = { FILE = "LICENSE" }
 
 # Add urls for your home page, issue tracker and source code
 [project.urls] # Optional
@@ -494,60 +650,3 @@ license = { FILE = LICENSE }
 
 
 ```
-
-
-## Example `pyproject.toml` files
-
-Below are some examples of `pyproject.toml` files from various packages in the scientific and pyOpenSci ecosystem.
-* [PyPA's fully documented example pyproject.toml file](https://github.com/pypa/sampleproject/blob/main/pyproject.toml)
-* [taxpasta has a nicely organized pyproject.toml file and is a pyOpenSci approved package](https://github.com/taxprofiler/taxpasta/blob/f9f6eea2ae7dd08bb60a53dd49ad77e4cf143573/pyproject.toml)
-
-
-## <i class="fa-solid fa-hands-bubbles"></i> Wrap up
-
-
-At this point you've created:
-
-* A [README.md](add-readme) file for your package
-* A [CODE_OF_CONDUCT.md](add-coc) file to support your user community
-* And a [LICENSE](add-license-coc) file which provides legal boundaries around how people can and can't use your software
-
-You also learned [how to publish your package to (test)PyPI](publish-pypi).
-
-## Publish a new version of your package to PyPI
-
-You are now ready to publish a new version of your Python package to (test) PyPI. When you do this you will see that the landing page for your package now contains a lot more information.
-
-Try to republish now.
-
-First, update the version of your package in your pyproject toml file. Below version is updated from
-`0.1.0` to `0.1.1`.
-
-```TOML
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[project]
-name = "pyospackage"
-version = "0.1.1"
-```
-
-Now use hatch to publish the new version of your package to test.PyPI.org.
-
-```bash
-> hatch publish -r test
-
-```
-
-### Next (optional) step - publishing to conda-forge
-
-You now have all of the skills that you need to publish
-your package to PyPI.
-
-If you also want to publish your package on conda-forge (which is a channel within the conda ecosystem), you will learn how to do that in the next lesson.
-
-
-:::{todo}
-Really good resources from jeremiah https://daniel.feldroy.com/posts/2023-08-pypi-project-urls-cheatsheet useful (and the linked links-demo even more so)
-:::
