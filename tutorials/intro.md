@@ -47,7 +47,7 @@ Publish to conda-forge <publish-conda-forge>
 
 Add README file <add-readme>
 Add a license & COC <add-license-coc>
-Update metadata <pyproject-toml>
+Package metadata - pyproject.toml <pyproject-toml>
 :::
 
 :::{admonition} Learning Objectives
