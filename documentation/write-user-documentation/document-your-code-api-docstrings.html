@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Document the code in your package’s API using docstrings" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pyopensci.org/python-package-guide/documentation/write-user-documentation/document-your-code-api-docstrings.html" />
+<meta property="og:site_name" content="pyOpenSci Python Package Guide" />
+<meta property="og:description" content="What is an API?: API stands for A pplied P rogramming I nterface. When discussed in the context of a (Python) package, the API refers to the functions, classes, methods, and attributes that a packa..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.pyopensci.org/python-package-guide/_images/social_previews/summary_documentation_write-user-documentation_document-your-code-api-docstrings_dd992d63.png" />
+<meta property="og:image:alt" content="What is an API?: API stands for A pplied P rogramming I nterface. When discussed in the context of a (Python) package, the API refers to the functions, class..." />
+<meta name="description" content="What is an API?: API stands for A pplied P rogramming I nterface. When discussed in the context of a (Python) package, the API refers to the functions, classes, methods, and attributes that a packa..." />
+<meta name="twitter:card" content="summary_large_image" />
+    <link href="https://www.pyopensci.org/images/favicon.ico" rel="icon" type="image/x-icon">
+    <title>Document the code in your package’s API using docstrings &#8212; Python Packaging Guide</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyos.css?v=ba8f538e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/write-user-documentation/document-your-code-api-docstrings';</script>
+    <script src="../../_static/matomo.js?v=918da087"></script>
+    <link rel="canonical" href="https://www.pyopensci.org/python-package-guide/documentation/write-user-documentation/document-your-code-api-docstrings.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Create tutorials in your Python package documentation" href="create-package-tutorials.html" />
+    <link rel="prev" title="Create User Facing Documentation for your Python Package" href="get-started.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p><a href='https://www.pyopensci.org/about-peer-review/index.html'>We run peer review of scientific Python software. Learn more.</a></p></div>
+  </div>
+
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light-mode.png" class="logo__image only-light" alt="pyOpenSci Python Package Guide. The pyOpenSci logo is a purple flower with pyOpenSci under it. The o in open sci is the center of the flower"/>
+    <script>document.write(`<img src="../../_static/logo-dark-mode.png" class="logo__image only-dark" alt="pyOpenSci Python Package Guide. The pyOpenSci logo is a purple flower with pyOpenSci under it. The o in open sci is the center of the flower"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials/intro.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../package-structure-code/intro.html">
+                        Packaging
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tests/index.html">
+                        Tests
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org">
+                    pyOpenSci Website
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org/software-peer-review">
+                    Peer Review Guide
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/governance">
+                    Governance
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyopensci/python-package-guide" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fosstodon.org/@pyOpenSci" title="Mastodon" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials/intro.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../package-structure-code/intro.html">
+                        Packaging
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tests/index.html">
+                        Tests
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org">
+                    pyOpenSci Website
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org/software-peer-review">
+                    Peer Review Guide
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/governance">
+                    Governance
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyopensci/python-package-guide" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fosstodon.org/@pyOpenSci" title="Mastodon" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Documentation for your Open Source Python Package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Document...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="document-the-code-in-your-package-s-api-using-docstrings">
+<h1>Document the code in your package’s API using docstrings<a class="headerlink" href="#document-the-code-in-your-package-s-api-using-docstrings" title="Link to this heading">#</a></h1>
+<section id="what-is-an-api">
+<h2>What is an API?<a class="headerlink" href="#what-is-an-api" title="Link to this heading">#</a></h2>
+<p>API stands for <strong>A</strong>pplied <strong>P</strong>rogramming <strong>I</strong>nterface. When
+discussed in the context of a (Python) package, the API refers to
+the functions, classes, methods, and attributes that a package maintainer creates for users.</p>
+<p>A simple example of a package API element:
+For instance, a package might have a function called <code class="docutils literal notranslate"><span class="pre">add_numbers()</span></code>
+that adds up a bunch of numbers. To add up numbers, you as the user
+simply call <code class="docutils literal notranslate"><span class="pre">add_numbers(1,2,3)</span></code> and the package function calculates the value and returns <code class="docutils literal notranslate"><span class="pre">6</span></code>. By calling the <code class="docutils literal notranslate"><span class="pre">add_numbers</span></code> function, you are
+using the package’s API.</p>
+<p>Package APIs consist of functions, classes, methods and attributes that create a user interface.</p>
+</section>
+<section id="what-is-a-docstring-and-how-does-it-relate-to-documentation">
+<h2>What is a docstring and how does it relate to documentation?<a class="headerlink" href="#what-is-a-docstring-and-how-does-it-relate-to-documentation" title="Link to this heading">#</a></h2>
+<p>In Python a docstring refers to text in a function, method or class
+that describes what the function does and its inputs and outputs. Python programmers usually refer to the inputs to functions as <a class="reference external" href="https://docs.python.org/3/glossary.html#term-parameter">“parameters”</a> or <a class="reference external" href="https://docs.python.org/3/faq/programming.html#faq-argument-vs-parameter">“arguments”</a>, and the outputs are often called “return values”</p>
+<p>The docstring is thus important for:</p>
+<ul class="simple">
+<li><p>When you call <code class="docutils literal notranslate"><span class="pre">help()</span></code> in Python, for example, <code class="docutils literal notranslate"><span class="pre">help(add_numbers)</span></code> will show the text of the function’s docstring. The docstring thus helps a user better understand how to applying the function more effectively to their workflow.</p></li>
+<li><p>When you build your package’s documentation, the docstrings can also be used to automagically create full API documentation that provides a clean view of all its functions, classes, methods, and attributes.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Example API Documentation for all functions, classes, methods, and attributes in a package.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.fatiando.org/verde/latest/api/index.html">View example high level API documentation for the Verde package. This page lists every function and class in the package along with a brief explanation of what it does</a></p></li>
+<li><p><a class="reference external" href="https://www.fatiando.org/verde/latest/api/generated/verde.grid_coordinates.html#verde.grid_coordinates">You can further dig down to see what a specific function does within the package by clicking on an API element</a></p></li>
+</ul>
+</div>
+</section>
+<section id="python-package-api-documentation">
+<h2>Python package API documentation<a class="headerlink" href="#python-package-api-documentation" title="Link to this heading">#</a></h2>
+<p>If you have a descriptive docstring for every user-facing
+class, method, attribute and/or function in your package (<em>within reason</em>), then your package’s API is considered well-documented.</p>
+<p>In Python, this means that you need to add a docstring for
+every user-facing
+class, method, attribute and/or function in your package (<em>within reason</em>) that:</p>
+<ul class="simple">
+<li><p>Explains what the function, method, attribute or class does</p></li>
+<li><p>Defines the <code class="docutils literal notranslate"><span class="pre">type</span></code> inputs and outputs (ie. <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">np.array</span></code>)</p></li>
+<li><p>Explains the expected output <code class="docutils literal notranslate"><span class="pre">return</span></code> of the object, method or function.</p></li>
+</ul>
+<section id="three-python-docstring-formats-and-why-we-like-numpy-style">
+<span id="numpy-docstring"></span><h3>Three Python docstring formats and why we like NumPy style<a class="headerlink" href="#three-python-docstring-formats-and-why-we-like-numpy-style" title="Link to this heading">#</a></h3>
+<p>There are several Python docstring formats that you can chose to use when documenting
+your package including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy-style</a></p></li>
+<li><p><a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">google style</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html">reST style</a></p></li>
+</ul>
+<!-- https://peps.python.org/pep-0287/ - 2002 pep 287-->
+<p>We suggest using <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy-style docstrings</a> for your
+Python documentation because:</p>
+<ul class="simple">
+<li><p>NumPy style docstrings are core to the scientific Python ecosystem and defined in the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">NumPy style guide</a>. Thus you will find them widely used there.</p></li>
+<li><p>The Numpy style docstring is simplified and thus easier-to-read both in the code and when calling <code class="docutils literal notranslate"><span class="pre">help()</span></code> in Python. In contrast, some feel that reST style docstrings is harder to quickly scan, and can take up more lines of code in modules.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are using NumPy style docstrings, be sure to include the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">sphinx napoleon
+extension</a> in your documentation <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file. This extension allows Sphinx
+to properly read and format NumPy format docstrings.</p>
+</div>
+</section>
+<section id="docstring-examples-better-and-best">
+<h3>Docstring examples Better and Best<a class="headerlink" href="#docstring-examples-better-and-best" title="Link to this heading">#</a></h3>
+<p>Below is a good example of a well documented function. Notice that this
+function’s docstring describes the function’s inputs and the function’s output
+(or return value). The initial description of the function is short (one line).
+Following that single line description there is a slightly longer description of
+what the function does (2 to 3 sentences). The return of the function is also
+specified.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extent_to_json</span><span class="p">(</span><span class="n">ext_obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert bounds to a shapely geojson like spatial object.</span>
+
+<span class="sd">    This format is what shapely uses. The output object can be used</span>
+<span class="sd">    to crop a raster image.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ext_obj : list or geopandas.GeoDataFrame</span>
+<span class="sd">        If provided with a `geopandas.GeoDataFrame`, the extent</span>
+<span class="sd">        will be generated from that. Otherwise, extent values</span>
+<span class="sd">        should be in the order: minx, miny, maxx, maxy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    extent_json: A GeoJSON style dictionary of corner coordinates</span>
+<span class="sd">    for the extent</span>
+<span class="sd">        A GeoJSON style dictionary of corner coordinates representing</span>
+<span class="sd">        the spatial extent of the provided spatial object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<!-- I can't seem to get doc targets across pages to work-->
+</section>
+<section id="best-a-docstring-with-example-use-of-the-function">
+<span id="docstring-best-practice"></span><h3>Best: a docstring with example use of the function<a class="headerlink" href="#best-a-docstring-with-example-use-of-the-function" title="Link to this heading">#</a></h3>
+<p>This example contains an example of using the function that is also tested in
+sphinx using <a class="reference external" href="https://docs.python.org/3/library/doctest.html">doctest</a>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extent_to_json</span><span class="p">(</span><span class="n">ext_obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert bounds to a shapely geojson like spatial object.</span>
+
+<span class="sd">    This format is what shapely uses. The output object can be used</span>
+<span class="sd">    to crop a raster image.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ext_obj : list or geopandas.GeoDataFrame</span>
+<span class="sd">        If provided with a `geopandas.GeoDataFrame`, the extent</span>
+<span class="sd">        will be generated from that. Otherwise, extent values</span>
+<span class="sd">        should be in the order: minx, miny, maxx, maxy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    extent_json : A GeoJSON style dictionary of corner coordinates</span>
+<span class="sd">    for the extent</span>
+<span class="sd">        A GeoJSON style dictionary of corner coordinates representing</span>
+<span class="sd">        the spatial extent of the provided spatial object.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    Convert a `geopandas.GeoDataFrame` to an extent dictionary:</span>
+
+<span class="sd">    &gt;&gt;&gt; import geopandas as gpd</span>
+<span class="sd">    &gt;&gt;&gt; import earthpy.spatial as es</span>
+<span class="sd">    &gt;&gt;&gt; from earthpy.io import path_to_example</span>
+
+<span class="sd">	We start by loading a Shapefile.</span>
+
+<span class="sd">    &gt;&gt;&gt; rmnp = gpd.read_file(path_to_example(&#39;rmnp.shp&#39;))</span>
+
+<span class="sd">	And then use `extent_to_json` to do the conversion from `shp` to</span>
+<span class="sd">    `geopandas.GeoDataFrame`.</span>
+
+<span class="sd">    &gt;&gt;&gt; es.extent_to_json(rmnp)</span>
+<span class="sd">    {&#39;type&#39;: &#39;Polygon&#39;, &#39;coordinates&#39;: (((-105.4935937, 40.1580827), ...),)}</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<figure class="align-default" id="earthpy-json-example">
+<a class="reference internal image-reference" href="../../_images/sphinx-rendering-extent-to-json-earthpy.png"><img alt="../../_images/sphinx-rendering-extent-to-json-earthpy.png" src="../../_images/sphinx-rendering-extent-to-json-earthpy.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">Using the above NumPy format docstring in sphinx, the autodoc extension will
+create the about documentation section for the <code class="docutils literal notranslate"><span class="pre">extent_to_json</span></code> function. The
+output of the <code class="docutils literal notranslate"><span class="pre">es.extent_to_json(rmnp)</span></code> command can even be tested using
+doctest adding another quality check to your package.</span><a class="headerlink" href="#earthpy-json-example" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="using-doctest-to-run-docstring-examples-in-your-package-s-methods-and-functions">
+<h2>Using doctest to run docstring examples in your package’s methods and functions<a class="headerlink" href="#using-doctest-to-run-docstring-examples-in-your-package-s-methods-and-functions" title="Link to this heading">#</a></h2>
+<!-- This link isn't working no matter how i create the target. not sure
+why -->
+<p>Above, we provided some examples of good, better, best docstring formats. If you are using Sphinx to create your docs, you can add the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/doctest.html">doctest</a> extension to your Sphinx build. Doctest provides an additional check for docstrings with example code in them.
+Doctest runs the example code in your docstring <code class="docutils literal notranslate"><span class="pre">Examples</span></code> checking
+that the expected output is correct. Similar to running
+tutorials in your documentation, <code class="docutils literal notranslate"><span class="pre">doctest</span></code> can be a useful step that
+assures that your package’s code (API) runs as you expect it to.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s important to keep in mind that examples in your docstrings
+help users using your package. Running <code class="docutils literal notranslate"><span class="pre">doctest</span></code> on those examples provides a
+check of your package’s API. doctest ensures that the functions and methods in your package
+run as you expect them to. Neither of these items replace a separate,
+stand-alone test suite that is designed to test your package’s core functionality
+across operating systems and Python versions.</p>
+</div>
+<p>Below is an example of a docstring with an example.
+doctest will run the example below and test that if you provide
+<code class="docutils literal notranslate"><span class="pre">add_me</span></code> with the values 1 and 3 it will return 4.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_me</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that sums two numbers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num1 : int</span>
+<span class="sd">        An integer value to be added</span>
+<span class="sd">    num2 : int</span>
+<span class="sd">        An integer value to be added</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">       The integer sum of the provided numbers.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Below you can see how the `add_me` function will return a number.</span>
+
+<span class="sd">    &gt;&gt;&gt; add_me(1, 3)</span>
+<span class="sd">    4</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="adding-type-hints-to-your-docstrings">
+<h2>Adding type hints to your docstrings<a class="headerlink" href="#adding-type-hints-to-your-docstrings" title="Link to this heading">#</a></h2>
+<p>In the example above, you saw the use of numpy-style docstrings to describe data types
+that are passed into functions as parameters or
+into classes as attributes. In a numpy-style docstring you add those
+types in the Parameters section of the docstring. Below you can see that
+the parameter <code class="docutils literal notranslate"><span class="pre">num1</span></code> and <code class="docutils literal notranslate"><span class="pre">num2</span></code> should both be a Python <code class="docutils literal notranslate"><span class="pre">int</span></code> (integer) value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">Parameters</span>
+    <span class="o">----------</span>
+    <span class="n">num1</span> <span class="p">:</span> <span class="nb">int</span>
+        <span class="n">An</span> <span class="n">integer</span> <span class="n">value</span> <span class="n">to</span> <span class="n">be</span> <span class="n">added</span>
+    <span class="n">num2</span> <span class="p">:</span> <span class="nb">int</span>
+        <span class="n">An</span> <span class="n">integer</span> <span class="n">value</span> <span class="n">to</span> <span class="n">be</span> <span class="n">added</span>
+</pre></div>
+</div>
+<p>Describing the expected data type that a function or method requires
+helps users better understand how to call a function or method.</p>
+<p>Type-hints add another layer of type documentation to your code. Type-hints
+make make it easier for new developers, your future self or contributors
+to get to know your code base quickly.</p>
+<p>Type hints are added to the definition of your function. In the example below, the parameters aNum and aNum2 are defined as being type = int (integer).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_me</span><span class="p">(</span><span class="n">num1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="s2">&quot;&quot;&quot;A function that sums two numbers.</span>
+</pre></div>
+</div>
+<p>You can further describe the expected function output using <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>. Below
+the output of the function is also an int.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_me</span><span class="p">(</span><span class="n">num1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&quot;&quot;&quot;A function that sums two numbers.</span>
+</pre></div>
+</div>
+<section id="why-use-type-hints">
+<span id="type-hints"></span><h3>Why use type hints<a class="headerlink" href="#why-use-type-hints" title="Link to this heading">#</a></h3>
+<p>Type hints:</p>
+<ul class="simple">
+<li><p>Make development and debugging faster,</p></li>
+<li><p>Make it easier for a user to see the data format inputs and outputs of methods and functions,</p></li>
+<li><p>Support using static type checking tools such as <a class="reference external" href="https://mypy-lang.org/"><code class="docutils literal notranslate"><span class="pre">mypy</span></code></a> which will check your code to ensure types are correct.</p></li>
+</ul>
+<p>You should consider adding type hinting to your code if:</p>
+<ul class="simple">
+<li><p>Your package performs data processing,</p></li>
+<li><p>You use functions that require complex inputs</p></li>
+<li><p>You want to lower the entrance barrier for new contributors to help you with your code.</p></li>
+</ul>
+<div class="caution admonition">
+<p class="admonition-title">Beware of too much type hinting</p>
+<p>As you add type hints to your code consider that in some cases:</p>
+<ul class="simple">
+<li><p>If you have a complex code base, type hints may make code more difficult to read. This is especially true when a parameter’s input takes multiple data types and you list each one.</p></li>
+<li><p>Writing type hints for simple scripts and functions that perform obvious operations don’t make sense.</p></li>
+</ul>
+</div>
+</section>
+<section id="gradually-adding-type-hints">
+<h3>Gradually adding type hints<a class="headerlink" href="#gradually-adding-type-hints" title="Link to this heading">#</a></h3>
+<p>Adding type hints can take a lot of time. However, you can add
+type hints incrementally as you work on your code.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Adding type hints is also a great task for new contributors. It will
+help them get to know your package’s code and structure better before
+digging into more complex contributions.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="get-started.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create User Facing Documentation for your Python Package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="create-package-tutorials.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create tutorials in your Python package documentation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-api">What is an API?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-docstring-and-how-does-it-relate-to-documentation">What is a docstring and how does it relate to documentation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-api-documentation">Python package API documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-python-docstring-formats-and-why-we-like-numpy-style">Three Python docstring formats and why we like NumPy style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docstring-examples-better-and-best">Docstring examples Better and Best</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-a-docstring-with-example-use-of-the-function">Best: a docstring with example use of the function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-doctest-to-run-docstring-examples-in-your-package-s-methods-and-functions">Using doctest to run docstring examples in your package’s methods and functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-type-hints-to-your-docstrings">Adding type hints to your docstrings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-type-hints">Why use type hints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradually-adding-type-hints">Gradually adding type hints</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyopensci/python-package-guide/edit/main/documentation/write-user-documentation/document-your-code-api-docstrings.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/documentation/write-user-documentation/document-your-code-api-docstrings.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, pyOpenSci.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

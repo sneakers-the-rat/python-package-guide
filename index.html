@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="pyOpenSci Python Package Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pyopensci.org/python-package-guide/index.html" />
+<meta property="og:site_name" content="pyOpenSci Python Package Guide" />
+<meta property="og:description" content="We support the Python tools that scientists need to create open science workflows. GitHub release (latest by date) DOI new Tutorial Series: Create a Python Package: The first round of our community..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.pyopensci.org/python-package-guide/_images/social_previews/summary_index_858604e5.png" />
+<meta property="og:image:alt" content="We support the Python tools that scientists need to create open science workflows. GitHub release (latest by date) DOI new Tutorial Series: Create a Python P..." />
+<meta name="description" content="We support the Python tools that scientists need to create open science workflows. GitHub release (latest by date) DOI new Tutorial Series: Create a Python Package: The first round of our community..." />
+<meta name="twitter:card" content="summary_large_image" />
+    <link href="https://www.pyopensci.org/images/favicon.ico" rel="icon" type="image/x-icon">
+    <title>pyOpenSci Python Package Guide &#8212; Python Packaging Guide</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/pyos.css?v=ba8f538e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script src="_static/matomo.js?v=918da087"></script>
+    <link rel="canonical" href="https://www.pyopensci.org/python-package-guide/index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python packaging 101" href="tutorials/intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content"><p><a href='https://www.pyopensci.org/about-peer-review/index.html'>We run peer review of scientific Python software. Learn more.</a></p></div>
+  </div>
+
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo-light-mode.png" class="logo__image only-light" alt="pyOpenSci Python Package Guide. The pyOpenSci logo is a purple flower with pyOpenSci under it. The o in open sci is the center of the flower"/>
+    <script>document.write(`<img src="_static/logo-dark-mode.png" class="logo__image only-dark" alt="pyOpenSci Python Package Guide. The pyOpenSci logo is a purple flower with pyOpenSci under it. The o in open sci is the center of the flower"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tutorials/intro.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="package-structure-code/intro.html">
+                        Packaging
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="documentation/index.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tests/index.html">
+                        Tests
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org">
+                    pyOpenSci Website
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org/software-peer-review">
+                    Peer Review Guide
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/governance">
+                    Governance
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyopensci/python-package-guide" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fosstodon.org/@pyOpenSci" title="Mastodon" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tutorials/intro.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="package-structure-code/intro.html">
+                        Packaging
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="documentation/index.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tests/index.html">
+                        Tests
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org">
+                    pyOpenSci Website
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://www.pyopensci.org/software-peer-review">
+                    Peer Review Guide
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/governance">
+                    Governance
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyopensci/python-package-guide" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fosstodon.org/@pyOpenSci" title="Mastodon" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pyopensci-python-package-guide">
+<h1>pyOpenSci Python Package Guide<a class="headerlink" href="#pyopensci-python-package-guide" title="Link to this heading">#</a></h1>
+<p>We support the Python tools that scientists need to create open science workflows.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-flex-row-reverse docutils">
+<div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 sd-m-auto docutils">
+</div>
+<div class="sd-col sd-d-flex-column sd-col-8 sd-col-xs-8 sd-col-sm-8 sd-col-md-8 sd-col-lg-8 sd-fs-3 docutils">
+<p><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/pyopensci/python-package-guide?color=purple&amp;display_name=tag&amp;style=plastic" />
+<a class="reference external" href="https://github.com/pyopensci/contributing-guide"><img alt="" src="https://img.shields.io/github/stars/pyopensci/python-package-guide?style=social" /></a>
+<a class="reference external" href="https://zenodo.org/badge/latestdoi/556814582"><img alt="DOI" src="https://zenodo.org/badge/556814582.svg" /></a></p>
+</div>
+</div>
+</div>
+<div class="admonition-about-this-guide admonition">
+<p class="admonition-title">About this guide</p>
+<a class="reference internal image-reference" href="_images/packaging-elements.png"><img alt="Image with the pyOpenSci flower logo in the upper right hand corner. The image shows the packaging lifecycle. The graphic shows a high level overview of the elements of a Python package. the inside circle has 5 items - user documentation, code/api, test suite, contributor documentation, project metadata / license / readme. In the middle of the circle is says maintainers and has a small icon with people. on the outside circle there is an arrow and it says infrastructure." class="align-right" src="_images/packaging-elements.png" style="width: 500px;" /></a>
+<p>This guide will help you:</p>
+<ol class="arabic simple">
+<li><p>Learn how to create a Python package from start to finish</p></li>
+<li><p>Understand the broader Python packaging tool ecosystem</p></li>
+<li><p>Navigate and make decisions around tool options</p></li>
+<li><p>Understand all of the pieces of creating and maintaining a Python package</p></li>
+</ol>
+<p>You will also find best practice recommendations and curated lists of community resources surrounding packaging and package documentation.</p>
+</div>
+<section id="new-tutorial-series-create-a-python-package">
+<h2><em>new</em> Tutorial Series: Create a Python Package<a class="headerlink" href="#new-tutorial-series-create-a-python-package" title="Link to this heading">#</a></h2>
+<p>The first round of our community-developed, how to create a Python package tutorial series for scientists is complete! Join our community review process or watch development of future tutorials in our <a class="reference external" href="https://github.com/pyOpenSci/python-package-guide">Github repo here</a>.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✿ Create a Package Tutorials ✿</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/intro.html"><span class="doc std std-doc">What is a Python package?</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/installable-code.html"><span class="doc std std-doc">Make your code installable</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/publish-pypi.html"><span class="doc std std-doc">Publish your package to (test) PyPi</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/publish-conda-forge.html"><span class="doc std std-doc">Publish your package to conda-forge</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✿ Package Metadata Tutorials ✿</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/add-readme.html"><span class="doc std std-doc">How to add a README file</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/pyproject-toml.html"><span class="std std-doc">How to add metadata to a pyproject.toml file for publication to PyPI.</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✿ Packaging Tool Tutorials ✿</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="tutorials/get-to-know-hatch.html"><span class="doc std std-doc">Introduction to Hatch</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-packaging-for-scientists">
+<h2>Python Packaging for Scientists<a class="headerlink" href="#python-packaging-for-scientists" title="Link to this heading">#</a></h2>
+<p>Learn about Python packaging best practices. You will also get to know the
+the vibrant ecosystem of packaging tools that are available to help you with your Python packaging needs.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Create your package ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/python-package-structure.html"><span class="doc std std-doc">Package file structure</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/pyproject-toml-python-package-metadata.html"><span class="std std-doc">Package metadata / pyproject.toml</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/python-package-distribution-files-sdist-wheel.html"><span class="std std-doc">Build your package (sdist / wheel)</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/declare-dependencies.html"><span class="std std-doc">Declare dependencies</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/python-package-build-tools.html"><span class="std std-doc">Navigate the packaging tool ecosystem</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/complex-python-package-builds.html"><span class="std std-doc">Non pure Python builds</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Publish your package ✨</div>
+<p class="sd-card-text">Gain a better understanding of the Python packaging ecosystem
+Learn about best practices for:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/python-package-versions.html"><span class="std std-doc">Package versioning &amp; release</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/publish-python-package-pypi-conda.html"><span class="std std-doc">Publish to PyPI &amp; Conda-forge</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Write The Docs ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/write-user-documentation/intro.html"><span class="doc std std-doc">Create documentation for your users</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/repository-files/intro.html"><span class="doc std std-doc">Core files to include in your package repository</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/write-user-documentation/create-package-tutorials.html"><span class="doc std std-doc">Write tutorials to show how your package is used</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Developer Docs ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/repository-files/contributing-file.html"><span class="doc std std-doc">Create documentation for collaborating developers</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/repository-files/development-guide.html"><span class="doc std std-doc">Write a development guide</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Document For A Community ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/repository-files/readme-file-best-practices.html"><span class="doc std std-doc">Writing a README file</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/repository-files/code-of-conduct-file.html"><span class="doc std std-doc">Set norms with a Code of Conduct</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/repository-files/license-files.html"><span class="doc std std-doc">License your package</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Publish Your Docs ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/hosting-tools/intro.html"><span class="doc std std-doc">How to publish your docs</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/hosting-tools/intro.html"><span class="doc std std-doc">Using Sphinx</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/hosting-tools/myst-markdown-rst-doc-syntax.html"><span class="doc std std-doc">Markdown, MyST, and ReST</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="documentation/hosting-tools/publish-documentation-online.html"><span class="doc std std-doc">Host your docs on Read The Docs or Github Pages</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h2>
+<p><em>We are actively working on this section. <a class="reference external" href="https://github.com/pyOpenSci/python-package-guide">Follow development here.</a></em></p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Tests for your Python package ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="tests/index.html"><span class="std std-doc">Intro to testing</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tests/write-tests.html"><span class="doc std std-doc">Write tests</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tests/test-types.html"><span class="doc std std-doc">Types of tests</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Run your tests ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="tests/run-tests.html"><span class="doc std std-doc">Run tests locally</span></a></p></li>
+<li><p class="sd-card-text"><a class="reference internal" href="tests/tests-ci.html"><span class="doc std std-doc">Run tests in CI</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Code style &amp; Format ✨</div>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="package-structure-code/code-style-linting-format.html"><span class="std std-doc">Code style</span></a></p></li>
+</ul>
+</div>
+<a class="sd-stretched-link reference internal" href="CONTRIBUTING.html"><span class="doc"></span></a></div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover left-aligned docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+✨ Want to contribute? ✨</div>
+<p class="sd-card-text">We welcome contributions to this guide. Learn more about how you can
+contribute.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="CONTRIBUTING.html"><span class="doc"></span></a></div>
+</div>
+</div>
+</div>
+<figure class="align-right">
+<a class="reference internal image-reference" href="https://www.pyopensci.org/images/people-building-blocks.jpg"><img alt="xkcd comic showing a stick figure on the ground and one in the air. The one on the ground is saying. `You're flying! how?`  The person in the air replies  `Python!` Below is a 3 rectangle comic with the following text in each box. box 1 - I learned it last night. Everything is so simple. Hello world is just print hello world. box 2 - the person on the ground says - come join us programming is fun again. it's a whole new world. But how are you flying? box 3 - the person flying says - i just typed import antigravity. I also sampled everything in the medicine cabinet. But i think this is the python. the person on the ground is saying - that's it?" src="https://www.pyopensci.org/images/people-building-blocks.jpg" style="width: 350px;" /></a>
+</figure>
+<section id="a-community-created-guidebook">
+<h3>A community-created guidebook<a class="headerlink" href="#a-community-created-guidebook" title="Link to this heading">#</a></h3>
+<p>Every page in this guidebook goes through an extensive community review
+process. To ensure our guidebook is both beginner-friendly and accurate, we encourage reviews from a diverse set of pythonistas and scientists with a wide range of skills and expertise.</p>
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-rounded-pill float-left reference external" href="https://github.com/pyOpenSci/python-package-guide#contributors-"><span>View guidebook contributors</span></a></p>
+</section>
+</section>
+<section id="who-this-guidebook-is-for">
+<h2>Who this guidebook is for<a class="headerlink" href="#who-this-guidebook-is-for" title="Link to this heading">#</a></h2>
+<p>This guidebook is for anyone interested in learning more about Python packaging. It is beginner-friendly and will provide:</p>
+<ol class="arabic simple">
+<li><p>Beginning-to-end guidance on creating a Python package.</p></li>
+<li><p>Resources to help you navigate the Python packaging ecosystem of tools and approaches to packaging.</p></li>
+<li><p>A curated list of resources to help you get your package into documented, usable and maintainable shape.</p></li>
+</ol>
+</section>
+<section id="where-this-guide-is-headed">
+<h2>Where this guide is headed<a class="headerlink" href="#where-this-guide-is-headed" title="Link to this heading">#</a></h2>
+<p>If you have ideas of things you’d like
+to see here clarified in this guide, <a class="reference external" href="https://github.com/pyOpenSci/python-package-guide/issues">we invite you to open an issue on GitHub.</a>.</p>
+<p>If you have questions about our peer review process or packaging in general, you are welcome to use our <a class="reference external" href="https://pyopensci.discourse.group/">pyOpenSci Discourse forum</a>.</p>
+<p>This is a living guide that is updated as tools and best practices evolve in the Python packaging ecosystem. We will be adding new content over the next year.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="tutorials/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python packaging 101</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-tutorial-series-create-a-python-package"><em>new</em> Tutorial Series: Create a Python Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packaging-for-scientists">Python Packaging for Scientists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-community-created-guidebook">A community-created guidebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-this-guidebook-is-for">Who this guidebook is for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-guide-is-headed">Where this guide is headed</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyopensci/python-package-guide/edit/main/index.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/index.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, pyOpenSci.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
