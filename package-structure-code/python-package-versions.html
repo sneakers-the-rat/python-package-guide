@@ -29,12 +29,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
@@ -42,27 +42,27 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/pyos.css?v=ba8f538e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyos.css?v=7c98ed1a" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=2709fde1"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'package-structure-code/python-package-versions';</script>
-    <script src="../_static/matomo.js?v=918da087"></script>
+    <script src="../_static/matomo.js?v=5a92784f"></script>
     <link rel="canonical" href="https://www.pyopensci.org/python-package-guide/package-structure-code/python-package-versions.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Python Package Code Style, Format and Linters" href="code-style-linting-format.html" />
-    <link rel="prev" title="Publishing Your Package In A Community Repository: PyPI or Anaconda Cloud" href="publish-python-package-pypi-conda.html" />
+    <link rel="prev" title="Publishing Your Package In A Community Repository: PyPI or Anaconda.org" href="publish-python-package-pypi-conda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -75,7 +75,6 @@
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -116,15 +115,13 @@
 </form></div>
   </div>
 
-  <header>
-
 
   <div class="bd-header-announcement container-fluid bd-header-announcement">
     <div class="bd-header-announcement__content"><p><a href='https://www.pyopensci.org/about-peer-review/index.html'>We run peer review of scientific Python software. Learn more.</a></p></div>
   </div>
 
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
@@ -212,8 +209,8 @@
                 
 
                 <li class="nav-item">
-                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/governance">
-                    Governance
+                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/handbook">
+                    Handbook
                   </a>
                 </li>
                 
@@ -309,18 +306,15 @@ document.write(`
   
 </div>
 
-    </div>
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -381,8 +375,8 @@ document.write(`
                 
 
                 <li class="nav-item">
-                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/governance">
-                    Governance
+                  <a class="nav-link dropdown-item nav-external" href="https://pyopensci.org/handbook">
+                    Handbook
                   </a>
                 </li>
                 
@@ -441,6 +435,31 @@ document.write(`
       </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Package structure &amp; code style</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-package-structure.html">Python package structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyproject-toml-python-package-metadata.html">pyproject.toml Package Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-package-distribution-files-sdist-wheel.html">Build Your Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="declare-dependencies.html">Declare dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-package-build-tools.html">Package Build Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complex-python-package-builds.html">Complex Builds</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Publishing a package</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="publish-python-package-pypi-conda.html">Publish with Conda / PyPI</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Package versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-style-linting-format.html">Code style</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -518,7 +537,7 @@ with how and when you update your package versions is important as:</p>
 <li><p>It helps your users (which might include other developers that depend on your package) understand the extent of changes to a package.</p></li>
 <li><p>It helps your development team make decisions about when to
 bump a package version based on standard rules.</p></li>
-<li><p>Consistent version increases following semver rules mean that values of your package version explain the extent of the changes made in the code base from version to version. thus your package version numbers become “expressive” in the same way that naming code variables well can <a class="reference external" href="https://medium.com/&#64;daniel.oliver.king/writing-expressive-code-b69ef7a5a2fa">make code expressive</a>.</p></li>
+<li><p>Consistent version increases following semver rules mean that values of your package version explain the extent of the changes made in the code base from version to version. Thus your package version numbers become “expressive” in the same way that naming code variables well can <a class="reference external" href="https://medium.com/&#64;daniel.oliver.king/writing-expressive-code-b69ef7a5a2fa">make code expressive</a>.</p></li>
 </ol>
 <div class="admonition-a-note-about-versioning admonition">
 <p class="admonition-title">A note about versioning</p>
@@ -580,7 +599,7 @@ versions. Some of these tools are built into or work with your chosen
 <p>Below, we provide an overview of these tools.</p>
 <!--
 If you are on the fence about what tool to use, we suggest
-that you use `setuptools-scm`. thinking now PDM or hatch + hatch_vcs  -->
+that you use `setuptools-scm`. Thinking now PDM or hatch + hatch_vcs  -->
 <p>There are three general groups of tools that you can use to manage
 package versions:</p>
 <ol class="arabic simple">
@@ -592,7 +611,7 @@ that implements a semantic versioning approach.</p></li>
 <section id="semantic-release-vs-version-control-based-vs-manual-version-bumping">
 <h3>Semantic release, vs version control based vs manual version bumping<a class="headerlink" href="#semantic-release-vs-version-control-based-vs-manual-version-bumping" title="Link to this heading">#</a></h3>
 <p>Generally semantic release and version control system tools
-can be setup to run automatically on GitHub using GitHub actions.
+can be setup to run automatically on GitHub using GitHub Actions.
 This means that you can create a workflow where a GitHub release
 and associated new version tag is used to trigger an automated
 build that:</p>
@@ -605,7 +624,7 @@ build that:</p>
 <p class="admonition-title">Note</p>
 <p>Bumping a package version refers to the step of increasing the package
 version after a set number of changes have been made to it. For example,
-you might bump from version 0.8 to 0.9 of a package. or from 0.9 to 1.0.</p>
+you might bump from version 0.8 to 0.9 of a package or from 0.9 to 1.0.</p>
 <p>Using semantic versioning, there are three main “levels”
 of versions that you might consider:</p>
 <p>Major, minor and patch. These are described in more detail below.</p>
@@ -659,14 +678,14 @@ version in a single file managed by Hatch provides
 your package with a “single source of truth” value for the version
 number. This in turn eliminates potential error associated with
 manually updating your package’s version.</p>
-<p>When you (or your CI system) build your package, hatch checks the current tag number for your package. if it has increased, it will update
+<p>When you (or your CI system) build your package, hatch checks the current tag number for your package. If it has increased, it will update
 the <strong>_version.py</strong> file with the new value.</p>
 <p>Thus, when you create a new tag or a new release with a tag and build your package, Hatch will access the new tag value and use it to update
 your package version.</p>
 <p>To use <strong>hatch_vcs</strong> you will need to use the <strong>hatchling</strong> build back end.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Hatchling can also be used any of the modern build tools
+<p>Hatchling can also be used with any of the modern build tools
 including <strong>Flit</strong> and <strong>PDM</strong> if you prefer those for your day to
 day workflow.</p>
 </div>
@@ -811,7 +830,7 @@ control tag, is used to trigger a version update.  -->
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Publishing Your Package In A Community Repository: PyPI or Anaconda Cloud</p>
+        <p class="prev-next-title">Publishing Your Package In A Community Repository: PyPI or Anaconda.org</p>
       </div>
     </a>
     <a class="right-next"
@@ -911,13 +930,24 @@ control tag, is used to trigger a version update.  -->
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
   
     <div class="footer-items__start">
+      
+        <div class="footer-item"><p>
+  pyOpensci is dedicated to creating a welcoming, supportive and diverse
+  community around the open source Python tools that drive open science. Our
+  <a
+    href="https://www.pyopensci.org/handbook/CODE_OF_CONDUCT.html"
+    target="_blank"
+    >Code of Conduct</a
+  >
+  defines expected behavior and guidelines that help create such a community.
+</p></div>
       
         <div class="footer-item">
 
