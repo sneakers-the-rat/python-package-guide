@@ -8,7 +8,7 @@
 In the previous lessons you learned:
 
 1. [What a Python package is](intro.md)
-2. [How to make your code installable](installable-code)
+2. [How to make your code installable](create-python-package)
 3. [How to publish your package to (test) PyPI](publish-pypi.md)
 4. [How to publish your package to conda-forge](publish-conda-forge.md)
 
@@ -193,7 +193,7 @@ Your finished `README.md` file should look something like this:
 # pyosPackage
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8365068.svg)](https://doi.org/10.5281/zenodo.8365068)
-[![pyOpenSci](https://pyopensci.org/badges/peer-reviewed.svg)](https://github.com/pyOpenSci/software-review/issues/115)
+[![pyOpenSci](https://pyopensci.org/badges/peer-reviewed.svg)](https://github.com/pyOpenSci/software-submission/issues/115)
 
 ## What pyosPackage does
 
